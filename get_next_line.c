@@ -6,7 +6,7 @@
 /*   By: josantia <josantia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:59:45 by josantia          #+#    #+#             */
-/*   Updated: 2024/06/04 05:20:10 by josantia         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:28:32 by josantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,33 +32,30 @@ char	*get_next_line(int fd)
 char	*ft_find_line(int fd, char *buffret)
 {
 	int		read_chars;
-	char	*temp;
+	char	*bufftemp;
 
     read_chars = 1;
 	if (!buffret)
 		buffret = ft_calloc(1, 1);
-	temp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	while (read_chars > 0 && !ft_strchr(buffret, '\n'))
+	if (!ft_strchr(buffret, '\n'))
 	{
-		read_chars = read(fd, temp, BUFFER_SIZE);
-		if (read_chars == -1)
+		bufftemp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+		while (read_chars > 0 && !ft_strchr(buffret, '\n'))
 		{
-			free(temp);
-			return (NULL);
+			read_chars = read(fd, bufftemp, BUFFER_SIZE);
+			if (read_chars == -1)
+			{
+				free(bufftemp);
+				return (NULL);
+			}
+		bufftemp[read_chars] = '\0';
+		buffret = ft_merge(buffret, bufftemp);
 		}
-		temp[read_chars] = '\0';
-		buffret = ft_merge(buffret, temp);
-//		if (ft_strchr(buffret, '\n'))
-//			break ;
+	free(bufftemp);
 	}
-	free(temp);
+	
 	return (buffret);
 }
-
-
-
-
-
 
 char	*ft_get_line(char *buffer)
 {
@@ -106,9 +103,6 @@ char	*ft_overload(char *buffer)
 	free(buffer);
 	return (overline);
 }
-
-
-
 
 
 char	*ft_merge(char *buff, char *temp)

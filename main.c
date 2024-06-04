@@ -14,8 +14,9 @@ int main(int argc, char** argv)
 	int fd;
     char *run;
 
-    run = "";
-
+    printf("El tamaño del BUFFER_SIZE ES:    --  %d   --\n", BUFFER_SIZE);
+    printf("-----------------------------------------------\n");
+    printf ("----INICIO DEL CONTENIDO DEL ARCHIVO----------\n");    
     run = "1";
 	fd = open ( "fichero.txt", O_RDONLY);        
 	    if (fd == -1)
@@ -24,16 +25,12 @@ int main(int argc, char** argv)
         }
         else
         {
-/*             while (run)
+           while (run)
             {
                run = get_next_line(fd);
-               printf("   --%s--\n",run);
-            }
- */   
-             printf("   --%s--\n",get_next_line(fd));
-             printf("   --%s--\n",get_next_line(fd));           
-             printf("   --%s--\n",get_next_line(fd));
-           
+               if (run)
+                printf("%s",run);
+            }           
             close (fd);
         }
 	return 0;

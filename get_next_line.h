@@ -6,7 +6,7 @@
 /*   By: josantia <josantia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 18:17:40 by josantia          #+#    #+#             */
-/*   Updated: 2024/06/04 05:17:07 by josantia         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:56:18 by josantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+#ifndef BUFFER_SIZE
+#define BUFFER_SIZE 1024
+#endif
 
 
 
