@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-
+#include <limits.h>
 
 int main(int argc, char** argv)
 {
@@ -17,7 +17,6 @@ int main(int argc, char** argv)
     printf("El tamaño del BUFFER_SIZE ES:    --  %d   --\n", BUFFER_SIZE);
     printf("-----------------------------------------------\n");
     printf ("----INICIO DEL CONTENIDO DEL ARCHIVO----------\n");    
-    run = "1";
 	fd = open ( "fichero.txt", O_RDONLY);        
 	    if (fd == -1)
         {

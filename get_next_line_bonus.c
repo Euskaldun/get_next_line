@@ -10,20 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*buffer;
+	static char	*buffer[FOPEN_MAX];
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	buffer = ft_find_line(fd, buffer);
-	if (buffer == NULL)
+	buffer[fd] = ft_find_line(fd, buffer[fd]);
+	if (buffer[fd] == NULL)
 		return (NULL);
-	line = ft_get_line(buffer);
-	buffer = ft_overload(buffer);
+	line = ft_get_line(buffer[fd]);
+	buffer[fd] = ft_overload(buffer[fd]);
 	return (line);
 }
 
