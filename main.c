@@ -25,14 +25,15 @@ int main(int argc, char** argv)
         }
         else
         {
-           while (run)
+           while (run = get_next_line(fd))
             {
-               run = get_next_line(fd);
                if (run)
                 printf("%s",run);
+            free(run);
             }           
             close (fd);
         }
+        
 	return 0;
 }
 

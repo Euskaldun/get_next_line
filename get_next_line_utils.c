@@ -15,42 +15,45 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		sizetotal;
-	char	*res;
+	char	*ret;
 	int		i;
 	int		j;
 
 	i = 0;
+	j = 0;
 	sizetotal = ft_strlen(s1) + ft_strlen(s2);
-	res = malloc(sizeof(char) * (sizetotal + 1));
-	if (!res || !s1 || !s2)
+	ret = malloc(sizeof(char) * (sizetotal + 1));
+	if (!ret || !s1 || !s2)
 		return (NULL);
 	while (s1[i] != 0)
 	{
-		res[i] = s1[i];
+		ret[i] = s1[i];
 		i++;
 	}
-	j = 0;
-	while (s2[j] != 0)
+	while (s2[j] != '\0')
 	{
-		res[i] = s2[j];
+		ret[i] = s2[j];
 		i++;
 		j++;
 	}
-	res[sizetotal] = 0;
-	return (res);
+	ret[sizetotal] = '\0';
+	return (ret);
 }
 
-char	*ft_strchr(const char *string, int searchedChar )
+char	*ft_strchr(const char *s, int c)
 {
-	char	*str;
+	int	i;
 
-	str = (char *)string;
-	while (*str != searchedChar && *str != 0)
-		str++;
-	if (*str == searchedChar)
-		return (str);
-	else
-		return (NULL);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char)c)
+			return ((char *)(s + i));
+		i++;
+	}
+	if (s[i] == (char)c)
+		return ((char *)(s + i));
+	return (NULL);
 }
 
 void	ft_bzero(void *s, size_t n)
@@ -67,23 +70,26 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-void	*ft_calloc(size_t elementCount, size_t elementSize)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	*res;
+	void	*ret;
 
-	res = malloc(elementSize * elementCount);
-	if (!res)
+	ret = malloc (size * count);
+	if (!ret)
 		return (NULL);
-	ft_bzero(res, elementSize * elementCount);
-	return (res);
+	ft_bzero(ret, size * count);
+	return (ret);
 }
 
-size_t	ft_strlen(const char *theString)
+size_t	ft_strlen(const char *s)
 {
-	int	i;
+	size_t	count;
 
-	i = 0;
-	while (theString[i])
-		i++;
-	return (i);
+	count = 0;
+	while (*s != '\0')
+	{
+		count++;
+		s++;
+	}
+	return (count);
 }
