@@ -6,7 +6,7 @@
 /*   By: josantia <josantia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 18:33:26 by josantia          #+#    #+#             */
-/*   Updated: 2024/06/04 04:15:29 by josantia         ###   ########.fr       */
+/*   Updated: 2024/06/07 21:23:36 by josantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 		j++;
 	}
-	ret[sizetotal] = '\0';
+	ret[sizetotal] = 0;
 	return (ret);
 }
 

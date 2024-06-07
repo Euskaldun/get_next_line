@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: josantia <josantia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:59:45 by josantia          #+#    #+#             */
-/*   Updated: 2024/06/04 15:28:32 by josantia         ###   ########.fr       */
+/*   Updated: 2024/06/07 22:16:06 by josantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*buffer[FOPEN_MAX];
+	static char	*buffer[1024];
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
@@ -38,7 +38,7 @@ char	*ft_find_line(int fd, char *buffret)
 	if (!ft_strchr(buffret, '\n'))
 	{
 		bufftemp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-		while (read_chars > 0 && !ft_strchr(buffret, '\n'))
+		while ((read_chars > 0) && !ft_strchr(buffret, '\n'))
 		{
 			read_chars = read(fd, bufftemp, BUFFER_SIZE);
 			if (read_chars == -1)
@@ -81,21 +81,20 @@ char	*ft_overload(char *buffer)
 
 	i = 0;
 	j = 0;
-	while (buffer[i] && buffer[i] != '\n')
+	while (buffer[i] != '\0' && buffer[i] != '\n')
 		i++;
-	if (!buffer[i])
+	if (buffer[i] == '\0')
 	{
 		free(buffer);
 		return (NULL);
 	}
 	overline = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	if (!overline)
+		return (NULL);
 	i++;
 	while (buffer[i])
-	{
-		overline[j] = buffer[i];
-		i++;
-		j++;
-	}
+		overline[j++] = buffer[i++];
+	overline[j + 1] = '\0';
 	free(buffer);
 	return (overline);
 }

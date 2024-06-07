@@ -17,7 +17,8 @@ int main(int argc, char** argv)
     printf("El tamaño del BUFFER_SIZE ES:    --  %d   --\n", BUFFER_SIZE);
     printf("-----------------------------------------------\n");
     printf ("----INICIO DEL CONTENIDO DEL ARCHIVO----------\n");    
-	fd = open ( "fichero.txt", O_RDONLY);        
+    fd = open("fichero.txt", O_RDONLY);
+//	fd = 0;        
 	    if (fd == -1)
         {
             printf ("File error\n");
@@ -26,7 +27,7 @@ int main(int argc, char** argv)
         {
            while (run = get_next_line(fd))
             {
-               if (run)
+  //             if (run)
                 printf("%s",run);
             free(run);
             }           
