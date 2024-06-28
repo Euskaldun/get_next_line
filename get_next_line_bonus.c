@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: josantia <josantia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:59:45 by josantia          #+#    #+#             */
-/*   Updated: 2024/06/07 21:32:17 by josantia         ###   ########.fr       */
+/*   Updated: 2024/06/28 18:10:04 by josantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
 	char		*line;
+	char		buff[BUFFER_SIZE + 1];
 	static char	*buffer[1024];
 
 	if (BUFFER_SIZE < 1 || fd < 0)
 		return (NULL);
-	buffer[fd] = ft_find_line(fd, buffer[fd]);
+	buffer[fd] = ft_find_line(fd, buffer[fd], buff);
 	if (!buffer[fd])
 		return (NULL);
 	line = ft_get_line(buffer[fd]);
@@ -27,9 +28,8 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-char	*ft_find_line(int fd, char *buffret)
+char	*ft_find_line(int fd, char *buffret, char *buff)
 {
-	char		buff[BUFFER_SIZE + 1];
 	int			read_chars;
 
 	read_chars = 1;

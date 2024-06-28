@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: josantia <josantia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 18:17:40 by josantia          #+#    #+#             */
-/*   Updated: 2024/06/07 16:25:58 by josantia         ###   ########.fr       */
+/*   Updated: 2024/06/09 21:06:30 by josantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_find_line(int fd, char *buffret);
+char	*ft_find_line(int fd, char *buffret, char *buff);
 char	*ft_get_line(char *buffer);
 char	*ft_overload(char *buffer);
 char	*ft_strjoin(char *s1, char *s2);
